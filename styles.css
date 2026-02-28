@@ -1,156 +1,149 @@
-/* ตั้งค่าพื้นฐาน */
+/* 1. ตั้งค่าพื้นหลังเป็นท้องฟ้าสดใส */
 body {
   font-family: "Noto Sans Thai", sans-serif;
-  background-color: #f4f7f6; /* พื้นหลังสีเทาอ่อนสว่าง */
-  color: #4a5d5a; /* ตัวอักษรสีเขียวขี้ม้าเข้ม */
+  background-color: #e0f7fa; /* สีฟ้าอ่อน */
+  /* พื้นหลังไล่เฉดสีท้องฟ้าไปสู่ทุ่งหญ้า */
+  background: linear-gradient(to bottom, #87ceeb 0%, #f0f9ff 50%, #c1e1c1 100%);
+  background-attachment: fixed;
+  color: #2d5a27; /* สีเขียวเข้มธรรมชาติ */
   margin: 0;
   line-height: 1.6;
 }
 
-/* ส่วนหัว */
+/* 2. ส่วนหัว (Header) แบบก้อนเมฆและท้องฟ้า */
 header {
   text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #8ba8a3 0%, #5d7a75 100%); /* ไล่เฉดสี Grey-Green */
-  color: white;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 60px 20px;
+  background: rgba(255, 255, 255, 0.3); /* โปร่งแสงเหมือนหมอกจางๆ */
+  backdrop-filter: blur(5px);
+  border-bottom: 3px solid #ffffff;
+  box-shadow: 0 4px 15px rgba(135, 206, 235, 0.3);
 }
 
 header h1 {
   margin: 0;
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* เพิ่มก้อนเมฆและดวงอาทิตย์ */
+header h1::before {
+  content: "☁️";
   font-size: 2rem;
-  font-weight: 600;
+  animation: float 3s ease-in-out infinite;
+}
+
+header h1::after {
+  content: "☀️";
+  font-size: 2rem;
+  animation: rotate 10s linear infinite;
 }
 
 header p {
-  margin: 10px 0 0;
-  opacity: 0.9;
-  font-size: 1rem;
+  color: #ffffff;
+  font-weight: 500;
+  margin-top: 10px;
 }
 
-/* ส่วนเนื้อหาหลัก */
+/* 3. การ์ดหุ้นสไตล์สวนดอกไม้ */
 main {
-  display: grid; /* ใช้ Grid แทน Flex เพื่อความเป๊ะ */
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 25px;
+  gap: 30px;
   padding: 40px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* การ์ดหุ้น */
-article { /* script.js สร้างเป็นแท็ก article */
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
+article {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 30px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #e0e7e5;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+  border: 2px solid #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 article:hover {
-  transform: translateY(-10px); /* ลอยขึ้นตอนชี้ */
-  box-shadow: 0 12px 20px rgba(0,0,0,0.08);
-  border-color: #8ba8a3;
+  transform: translateY(-10px);
+  background: #ffffff;
+  box-shadow: 0 15px 30px rgba(45, 90, 39, 0.15);
+  border-color: #a8e6cf;
+}
+
+/* เพิ่มต้นไม้จิ๋วเมื่อชี้ที่การ์ด */
+article:hover::after {
+  content: "🌳";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  opacity: 0.6;
 }
 
 article img {
   width: 100px;
   height: 100px;
-  object-fit: contain;
-  margin-bottom: 15px;
-  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.05));
+  border-radius: 50%; /* ทรงกลมเหมือนหยดน้ำ */
+  background: white;
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 article h2 {
-  color: #3e524f;
-  font-size: 1.4rem;
-  margin: 10px 0;
+  color: #388e3c; /* สีเขียวใบไม้ */
+  margin: 15px 0;
 }
 
-article p {
-  color: #7a8e8b;
-  font-size: 0.95rem;
-  margin-bottom: 20px;
-}
-
-/* ปุ่มรายละเอียด */
+/* 4. ปุ่มใบไม้ */
 .open-btn {
-  background-color: #70928d;
+  background: linear-gradient(135deg, #81c784 0%, #4caf50 100%);
   color: white;
   border: none;
-  padding: 10px 24px;
-  border-radius: 8px;
-  font-family: inherit;
-  font-weight: 500;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background 0.2s;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  transition: 0.3s;
 }
 
 .open-btn:hover {
-  background-color: #557570;
+  background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+  transform: scale(1.05);
 }
 
-/* Overlay / Popup */
-#overlay {
-  position: fixed;
-  inset: 0;
-  display: none; /* คุมด้วย script.js */
-  justify-content: center;
-  align-items: center;
-  background: rgba(44, 62, 59, 0.7); /* พื้นหลังโปร่งแสงโทนเขียวเข้ม */
-  backdrop-filter: blur(4px); /* ทำพื้นหลังเบลอ */
-  z-index: 1000;
+/* 5. เอฟเฟกต์ Animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
-.overlay-box {
-  background: white;
-  padding: 35px;
-  border-radius: 20px;
-  text-align: center;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.overlay-box h2 {
-  color: #3e524f;
-  margin-top: 15px;
-}
-
-.overlay-box a, 
-#closeBtn {
-  display: inline-block;
-  margin: 10px 5px;
-  padding: 10px 20px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-#overlayLink {
-  background-color: #8ba8a3;
-  color: white;
-  border: none;
-}
-
-#closeBtn {
-  background-color: #f1f3f2;
-  color: #5d7a75;
-  border: 1px solid #d1d9d7;
-}
-
-#closeBtn:hover {
-  background-color: #e2e8e6;
-}
-
-/* Footer */
+/* 6. Footer */
 footer {
   text-align: center;
-  padding: 30px;
-  color: #9db2af;
-  font-size: 0.9rem;
+  padding: 40px;
+  color: #558b2f;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Overlay */
+.overlay-box {
+  background: #ffffff;
+  border-radius: 30px;
+  border: 5px solid #e8f5e9;
 }
